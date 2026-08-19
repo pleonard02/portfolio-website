@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Priscilla's Portfolio</title>
+</head>
+<body>
+    <div class="cursor-spotlight"></div>
+    <nav class="glass-nav" aria-label="Main navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#other">Other</a>
+    </nav>
+    <main class="hero-layout">
+        <header class="hero">
+            <h1>Priscilla Leonard</h1>
+            <h2>Aspiring Software Engineer</h2>
+
+            <p>
+                I build thoughtful, practical solutions shaped by curiosity,
+                compassion, and real-world experience.
+            </p>
+
+            <div class="local-time">
+                <span class="status-dot"></span>
+                <span id="clock">00:00:00</span>
+                <span>ET</span>
+            </div>
+        </header>
+        <section class="chatbot-wrapper">
+            <img 
+                src="./assets/kali_portfolio_assistant.png" 
+                class="kali-assistant" 
+                alt="Kali, Priscilla's portfolio assistant"
+            >
+            <section class="chatbot" aria-label="Portfolio assistant">
+                <p class="chatbot-label">PORTFOLIO ASSISTANT</p>
+                <h2>Ask me anything about Priscilla.</h2>
+
+                <div class="suggested-questions">
+                    <button type="button">Featured Projects</button>
+                    <button type="button">Technical Skills</button>
+                    <button type="button">Work Experience</button>
+                </div>
+
+                <div class="chat-input">
+                    <input
+                        type="text"
+                        placeholder="Ask about my experience..."
+                        aria-label="Ask the portfolio assistant a question"
+                    >
+
+                    <button type="button" aria-label="Send question">→</button>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

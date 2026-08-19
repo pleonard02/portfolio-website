@@ -1,0 +1,303 @@
+:root {
+    --dark-amethyst: #231942;
+    --dusty-grape: #5e548e;
+    --amethyst-smoke: #9F86c0;
+    --lilac: #be95c4;
+    --pink-orchid: #e0b1cb;
+
+    --text-primary:#f7f3fa;
+    --text-secondary: #c9bfd5;
+    --surface: #2b2147;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Serif Display', 'Times New Roman', serif;
+    background-color: var(--dark-amethyst);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cursor-spotlight {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+        600px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+        rgba(159, 134, 192, 0.25),
+        transparent 70%
+    );
+}
+
+.hero-layout {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(400px, 1.2fr);
+    align-items: center;
+    gap: 5rem;
+
+    width: min(1200px, 90%);
+    min-height: calc(100vh - 120px);
+    margin: 0 auto;
+}
+
+.hero {
+    color: var(--text-primary);
+}
+
+.hero h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.25rem;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.glass-nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: fit-content;
+    margin: 1.5rem auto;
+    padding: 0.5rem;
+    background: rgba(35, 25, 66, 0.55);
+    border: 1px solid rgba(224, 177, 203, 0.15);
+    border-radius: 999px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 
+        0 8px 32px rgba(15, 10, 30, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-nav a {
+    padding: 0.75rem 1.5rem;
+    color: var(--amethyst-smoke);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: 
+        color 200ms ease,
+        background-color 200ms ease;
+}
+
+.glass-nav a:hover {
+    color: var(--pink-orchid);
+    background-color: rgba(190, 149, 196, 0.1);
+}
+
+.glass-nav a.active {
+    color: #fff;
+    background-color: rgba(94, 84, 142, 0.4);
+}
+
+.local-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    margin-top: 2rem;
+    padding: 0.65rem 1rem;
+    color: var(--pink-orchid);
+    background: rgba(35, 25, 66, 0.45);
+    border: 1px solid rgba(224, 177, 203, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    background-color: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.7);
+}
+
+#clock {
+    color: white;
+    font-variant-numeric: tabular-nums;
+}
+
+.chatbot-wrapper {
+    position: relative;
+    padding-top: 150px;
+}
+
+.kali-assistant {
+    position: absolute;
+    z-index: 2;
+    width: min(430px, 90%);
+    height: auto;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.chatbot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+    z-index: 1;
+    padding: 4.5rem 2rem 2rem;
+    color: var(--text-primary);
+    background: rgba(35, 25, 66, 0.48);
+    border: 1px solid rgba(224, 177, 203, 0.2);
+    border-radius: 2rem;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 24px 60px rgba(12, 7, 28, 0.3);
+}
+
+.chatbot-label {
+    margin 0 0 0.75rem;
+
+    color: var(--amethyst-smoke);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.chatbot h2 {
+    margin: 0 0 1.5rem;
+
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    line-height: 1.2;
+}
+
+.suggested-questions {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.65rem;
+}
+
+.suggested-questions button {
+    padding: 0.65rem 1rem;
+
+    color: var(--text-secondary);
+    background: rgba(159, 134, 192, 0.1);
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.suggested-questions button:hover {
+    color: var(--text-primary);
+    background: rgba(190, 149, 196, 0.2);
+    border-color: rgba(224, 177, 203, 0.45);
+    transform: translateY(-2px);
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    margin-top: auto;
+    padding: 0.5rem;
+
+    background: rgba(20, 13, 42, 0.55);
+    border: 1px solid rgba(224, 177, 203, 0.18);
+    border-radius: 999px;
+
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.chat-input:focus-within {
+    border-color: var(--lilac);
+    box-shadow: 0 0 0 3px rgba(190, 149, 196, 0.12);
+}
+
+.chat-input input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    outline: none;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.chat-input input::placeholder {
+    color: rgba(201, 191, 213, 0.55);
+}
+
+.chat-input button {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
+    color: var(--dark-amethyst);
+    background: var(--pink-orchid);
+    border: none;
+    border-radius: 50%;
+
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    transition: 
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.chat-input button:hover {
+    background: var(--lilac);
+    transform: scale(1.06);
+}
+
+.chat-input button:active {
+    transform: scale(0.96);
+}
+
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 4rem;
+    }
+}
