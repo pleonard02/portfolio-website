@@ -1,12 +1,24 @@
 import kali_assistant from "../assets/kali_portfolio_assistant.png";
+import { motion } from "motion/react";
+
 function KaliAssistant() {
   return (
     <section className="chatbot-wrapper">
-      <img
-        src={kali_assistant}
-        className="kali-assistant"
-        alt="Kali, Priscilla's portfolio assistant"
-      />
+      <div className="kali-image-container">
+        <motion.img
+          src={kali_assistant}
+          className="kali-assistant"
+          alt="Kali, Priscilla's portfolio assistant"
+          animate={{
+            y: [0, -12, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
 
       <section className="chatbot" aria-label="Portfolio assistant">
         <p className="chatbot-label">PORTFOLIO ASSISTANT</p>

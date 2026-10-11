@@ -154,7 +154,7 @@ img {
   width: min(430px, 90%);
   height: auto;
   top: -70px;
-  left: 50%;
+  left: 19%;
   transform: translateX(-50%);
   pointer-events: none;
 }
