@@ -294,6 +294,28 @@ img {
   transform: scale(0.96);
 }
 
+.chat-message.assistant {
+  align-self: flex-start;
+  background: rgba(159, 134, 192, 0.18);
+  border: 1px solid rgba(224, 177, 203, 0.2);
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: var(--dusty-grape);
+}
+
+.message-sender {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--pink-orchid);
+}
+
+.chat-message.user .message-sender {
+  color: #fff;
+}
+
 @media (max-width: 800px) {
   .hero {
     grid-template-columns: 1fr;
