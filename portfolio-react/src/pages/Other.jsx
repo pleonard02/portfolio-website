@@ -97,7 +97,7 @@ function Other() {
           </a>
 
           <a
-            href="www.linkedin.com/in/priscillaleonard"
+            href="https://www.linkedin.com/in/priscillaleonard"
             target="_blank"
             rel="noopener noreferrer"
             className="other-contact-button secondary"
