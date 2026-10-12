@@ -6,13 +6,22 @@ function ChatMessage({ message }) {
 
   return (
     <motion.div
-      className={`chat-message ${isKali ? "assistant" : "user"}`}
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25 }}
+      className={`message-row ${isKali ? "kali-row" : "user-row"}`}
+      initial={reduceMotion ? false : { opacity: 0, y: 12, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <span className="message-sender">{isKali ? "Kali 🐈‍⬛" : "You"}</span>
-      <p>{message.content}</p>
+      {isKali && (
+        <div className="message-avatar" aria-hidden="true">
+          🐈‍⬛
+        </div>
+      )}
+
+      <div
+        className={`message-bubble ${isKali ? "kali-bubble" : "user-bubble"}`}
+      >
+        <p>{message.content}</p>
+      </div>
     </motion.div>
   );
 }
