@@ -734,8 +734,6 @@ img {
   color: var(--text-primary);
 }
 
-/* HERO */
-
 .skills-hero {
   max-width: 800px;
   margin-bottom: 3.5rem;
@@ -768,8 +766,6 @@ img {
   line-height: 1.8;
   max-width: 700px;
 }
-
-/* SKILL CARDS */
 
 .skills-section {
   margin-bottom: 5rem;
@@ -844,8 +840,6 @@ img {
   font-size: 0.85rem;
 }
 
-/* LEARNING SECTION */
-
 .skills-learning {
   padding: 3rem;
   border: 1px solid rgba(224, 177, 203, 0.2);
@@ -879,7 +873,214 @@ img {
   font-size: 0.85rem;
 }
 
+
+.other-page {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 7rem 2rem 5rem;
+  color: var(--text-primary);
+}
+
+/* HERO */
+
+.other-hero {
+  max-width: 850px;
+  margin-bottom: 5rem;
+}
+
+.other-eyebrow {
+  color: var(--pink-orchid);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.other-hero h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.12;
+  margin: 0 0 1.5rem;
+}
+
+.other-hero h1 span {
+  color: var(--lilac);
+}
+
+.other-intro {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+/* SECTION HEADING */
+
+.other-section-heading {
+  margin-bottom: 2rem;
+}
+
+.other-section-heading h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+}
+
+/* INTEREST CARDS */
+
+.other-interests {
+  margin-bottom: 6rem;
+}
+
+.other-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.other-card {
+  min-width: 0;
+  padding: 2rem;
+  border: 1px solid rgba(224, 177, 203, 0.18);
+  border-radius: 22px;
+  background: rgba(94, 84, 142, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.other-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(224, 177, 203, 0.4);
+  background: rgba(94, 84, 142, 0.25);
+}
+
+.other-card-icon {
+  display: inline-block;
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.other-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.other-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* CONTACT */
+
+.other-contact {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px solid rgba(224, 177, 203, 0.2);
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(94, 84, 142, 0.3),
+    rgba(159, 134, 192, 0.12)
+  );
+}
+
+.other-contact h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.other-contact > p:not(.other-eyebrow) {
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.8;
+  margin: 0 auto 2rem;
+}
+
+.other-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.other-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.other-contact-button:hover {
+  transform: translateY(-2px);
+}
+
+.other-contact-button:focus-visible {
+  outline: 3px solid var(--pink-orchid);
+  outline-offset: 3px;
+}
+
+.other-contact-button.primary {
+  background: var(--lilac);
+  color: var(--dark-amethyst);
+}
+
+.other-contact-button.secondary {
+  border: 1px solid var(--amethyst-smoke);
+  color: var(--text-primary);
+}
+
 /* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .other-page {
+    padding: 6rem 1.25rem 3rem;
+  }
+
+  .other-hero,
+  .other-interests {
+    margin-bottom: 4rem;
+  }
+
+  .other-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .other-card {
+    padding: 1.5rem;
+  }
+
+  .other-contact {
+    padding: 3rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .other-card,
+  .other-contact-button {
+    transition: none;
+  }
+
+  .other-card:hover,
+  .other-contact-button:hover {
+    transform: none;
+  }
+}
 
 @media (max-width: 768px) {
   .skills-page {
