@@ -10,6 +10,8 @@ const suggestedQuestions = [
   "Work Experience",
 ];
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function KaliAssistant() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -33,7 +35,7 @@ function KaliAssistant() {
     };
   }, []);
 
-  function handleSend(question = input) {
+  async function handleSend(question = input) {
     const trimmed = question.trim();
 
     if (!trimmed || isTyping) return;
@@ -48,20 +50,43 @@ function KaliAssistant() {
     setInput("");
     setIsTyping(true);
 
-    const response = getKaliResponse(trimmed);
+    let response;
 
-    const timer = setTimeout(() => {
-      const kaliMessage = {
-        id: crypto.randomUUID(),
-        role: "assistant",
-        content: response,
-      };
+    try {
+      const apiResponse = await fetch(`${API_URL}/api/chat`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: trimmed }),
+      });
 
-      setMessages((previous) => [...previous, kaliMessage]);
+      if (!apiResponse.ok) {
+        throw new Error(`Kali API error: ${apiResponse.status}`);
+      }
+
+      const data = await apiResponse.json();
+
+      if (typeof data.reply !== "string" || !data.reply.trim()) {
+        throw new Error("Kali returned an empty response.");
+      }
+
+      response = data.reply;
+    } catch (error) {
+      console.error("Gemini unavailable, using fallback:", error);
+
+      response = getKaliResponse(trimmed);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
 
-    replyTimers.current.push(timer);
+    const kaliMessage = {
+      id: crypto.randomUUID(),
+      role: "assistant",
+      content: response,
+    };
+
+    setMessages((previous) => [...previous, kaliMessage]);
   }
 
   function handleSubmit(event) {

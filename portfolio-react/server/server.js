@@ -1,8 +1,12 @@
-require("dotenv").config();
+const path = require("path");
 
-const OpenAI = require("openai");
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+require("dotenv").config({
+  path: path.join(__dirname, ".env"),
+});
+
+const { GoogleGenAI } = require("@google/genai");
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 const express = require("express");
@@ -10,10 +14,21 @@ const cors = require("cors");
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT === undefined ? 3001 : Number(process.env.PORT);
+
+const { rateLimit } = require("express-rate-limit");
+
+if (!Number.isInteger(PORT) || PORT < 0 || PORT > 65535) {
+  throw new Error("PORT must be an integer between 0 and 65535.");
+}
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"],
+  }),
+);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
@@ -22,8 +37,17 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+const charLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    message: "Kali needs a little catnap! Please try again in 15 minutes.",
+  },
+});
 
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chat", charLimiter, async (req, res) => {
   try {
     const { message } = req.body;
 
@@ -37,9 +61,11 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    const response = await openai.responses.create({
-      model: "gpt-4.1-mini",
-      instructions: `
+    const response = await ai.models.generateContent({
+      model: "gemini-3.8-flash",
+      contents: message.trim(),
+      config: {
+        systemInstruction: `
         You are Kali, a friendly black cat and the AI
         assistant for Priscilla Leonard's portfolio.
 
@@ -56,20 +82,23 @@ app.post("/api/chat", async (req, res) => {
         projects, and professional background.
         Never invent qualifications or experience.
         If you don't know something, say so.
-      `,
-      input: message.trim(),
-      max_output_tokens: 250,
-      store: false,
+        `,
+        maxOutputTokens: 1024,
+      },
     });
 
     res.status(200).json({
-      reply: response.output_text,
+      reply: response.text,
     });
   } catch (error) {
     console.error("Kali API error:", error.message);
 
-    res.status(502).json({
-      message: "Kali couldn't respond right now.",
+    const isUnavailable = error.status === 503;
+
+    res.status(isUnavailable ? 503 : 502).json({
+      message: isUnavailable
+        ? "Kali is taking a quick catnap. Please try again shortly!"
+        : "Kali couldn't respond right now.",
     });
   }
 });
