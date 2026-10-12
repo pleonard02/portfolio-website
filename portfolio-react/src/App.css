@@ -401,7 +401,6 @@ img {
   margin-top: 0;
 }
 
-
 .chat-messages {
   display: flex;
   flex-direction: column;
@@ -437,6 +436,26 @@ img {
 .message-bubble {
   width: fit-content;
   max-width: 78%;
+}
+
+.about-card {
+  padding: 1.5rem;
+}
+
+.about-connect {
+  padding: 3rem 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-card,
+  .about-button {
+    transition: none;
+  }
+
+  .about-card:hover,
+  .about-button:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 800px) {
