@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "motion/react";
-import "./About.css";
 
 const highlights = [
   {
@@ -161,7 +160,7 @@ function About() {
             rel="noopener noreferrer"
             className="about-button secondary"
           >
-            Visit My GitHub ↗
+            Visit My GitHub
           </a>
         </div>
       </motion.section>
