@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { projects } from "../data/project.js";
+import demoMovie from "../../public/the_recipe_box_demo.mp4";
 
 function ProjectLinks({ project }) {
   return (
@@ -40,7 +41,23 @@ function ProjectCard({ project, index, reduceMotion }) {
       }}
     >
       <div className="project-visual">
-        {project.image ? (
+        {project.id === "recipe-box" ? (
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            aria-label="The Recipe Box application demo"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              display: "block",
+            }}
+          >
+            <source src={demoMovie} type="video/mp4" />
+            Your browser does not support this video.
+          </video>
+        ) : project.image ? (
           <img src={project.image} alt={`${project.title} preview`} />
         ) : (
           <div className="project-placeholder">

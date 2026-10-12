@@ -721,6 +721,19 @@ img {
   margin-bottom: 2rem;
 }
 
+.project-card-featured .project-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project-card-featured .project-visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -873,15 +886,12 @@ img {
   font-size: 0.85rem;
 }
 
-
 .other-page {
   width: min(1120px, 100%);
   margin: 0 auto;
   padding: 7rem 2rem 5rem;
   color: var(--text-primary);
 }
-
-/* HERO */
 
 .other-hero {
   max-width: 850px;
@@ -1044,8 +1054,6 @@ img {
   border: 1px solid var(--amethyst-smoke);
   color: var(--text-primary);
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 768px) {
   .other-page {
