@@ -9,6 +9,20 @@ My personal software engineering portfolio, featuring projects, technical skills
 - Kali chat assistant with suggested questions and animated messages.
 - Eastern Time clock, cursor spotlight, responsive styles, and reduced-motion support.
 
+## Responsive web design
+
+The portfolio adapts to desktop, tablet, and mobile screens. Navigation wraps on smaller displays, content grids stack into a single column, and headings, spacing, the chat panel, and project videos resize to fit the available width.
+
+## Screenshots
+
+### Desktop
+
+![Desktop view of Priscilla Leonard's portfolio](portfolio-react/public/portfolio-website.png)
+
+### Mobile
+
+![Mobile view of Priscilla Leonard's portfolio](portfolio-react/public/portfolio-website-mobile.png)
+
 ## Tech stack
 
 React, JavaScript, Vite, React Router, CSS, Motion, Node.js, Express, and the Google GenAI SDK.
@@ -62,12 +76,12 @@ Portfolio pages run independently of the API. Kali's chat replies require the ba
 
 Run frontend commands inside `portfolio-react`:
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the frontend development server |
-| `npm run lint` | Check JavaScript and JSX with ESLint |
-| `npm run build` | Build the frontend into `dist/` |
-| `npm run preview` | Preview the production frontend |
+| Command           | Purpose                               |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Start the frontend development server |
+| `npm run lint`    | Check JavaScript and JSX with ESLint  |
+| `npm run build`   | Build the frontend into `dist/`       |
+| `npm run preview` | Preview the production frontend       |
 
 In `portfolio-react/server`, use `npm run dev` for development or `npm start` to run the API without nodemon. The API runs separately from the frontend build.
 
