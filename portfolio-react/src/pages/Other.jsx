@@ -93,10 +93,17 @@ function Other() {
             rel="noopener noreferrer"
             className="other-contact-button primary"
           >
-            GitHub ↗
+            GitHub
           </a>
 
-          {/* Add LinkedIn and email links when ready. */}
+          <a
+            href="www.linkedin.com/in/priscillaleonard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="other-contact-button secondary"
+          >
+            LinkedIn
+          </a>
         </div>
       </motion.section>
     </main>
