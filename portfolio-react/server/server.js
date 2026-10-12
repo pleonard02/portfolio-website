@@ -18,6 +18,8 @@ const PORT = process.env.PORT === undefined ? 3001 : Number(process.env.PORT);
 
 const { rateLimit } = require("express-rate-limit");
 
+const kaliKnowledge = require("./data/kaliKnowledge.cjs");
+
 if (!Number.isInteger(PORT) || PORT < 0 || PORT > 65535) {
   throw new Error("PORT must be an integer between 0 and 65535.");
 }
@@ -65,24 +67,7 @@ app.post("/api/chat", charLimiter, async (req, res) => {
       model: "gemini-3.8-flash",
       contents: message.trim(),
       config: {
-        systemInstruction: `
-        You are Kali, a friendly black cat and the AI
-        assistant for Priscilla Leonard's portfolio.
-
-        Priscilla is an aspiring software engineer with
-        experience in React, JavaScript, Node.js,
-        Express, MongoDB, and full-stack development.
-
-        Her featured project is The Recipe Box,
-        a MERN application for managing recipes,
-        meal plans, kitchen inventory, and shopping lists.
-
-        Be friendly, professional, and concise.
-        Answer questions about Priscilla's skills,
-        projects, and professional background.
-        Never invent qualifications or experience.
-        If you don't know something, say so.
-        `,
+        systemInstruction: kaliKnowledge,
         maxOutputTokens: 1024,
       },
     });
@@ -93,7 +78,7 @@ app.post("/api/chat", charLimiter, async (req, res) => {
   } catch (error) {
     console.error("Kali API error:", error.message);
 
-    const isUnavailable = error.status === 503;
+    const isUnavailable = error.status === 503 || error.status === 429;
 
     res.status(isUnavailable ? 503 : 502).json({
       message: isUnavailable
