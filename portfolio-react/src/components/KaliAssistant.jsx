@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import ChatMessage from "./ChatMessage";
+import { getKaliResponse } from "../data/kaliKnowledge";
 import kali_assistant from "../assets/kali_portfolio_assistant.png";
 
 const suggestedQuestions = [
@@ -32,20 +33,6 @@ function KaliAssistant() {
     };
   }, []);
 
-  function getResponse(question) {
-    const normalized = question.toLowerCase();
-    if (normalized.includes("project")) {
-      return "Priscilla has built several full-stack applications using React, Node.js, Express, and MongoDB. One of her featured projects is The Recipe Box!";
-    }
-    if (normalized.includes("skill") || normalized.includes("tech")) {
-      return "Priscilla works with JavaScript, React, Node.js, Express, MongoDB, HTML, CSS, and Git. She's also expanding her backend development skills!";
-    }
-    if (normalized.includes("work") || normalized.includes("experience")) {
-      return "Priscilla brings experience in technical support, operations, and case management. Her background helps her approach software development with strong problem-solving and communication skills.";
-    }
-    return "That's a great question! I can tell you about Priscilla's projects, technical skills, or professional experience. What would you like to know?";
-  }
-
   function handleSend(question = input) {
     const trimmed = question.trim();
 
@@ -61,7 +48,7 @@ function KaliAssistant() {
     setInput("");
     setIsTyping(true);
 
-    const response = getResponse(trimmed);
+    const response = getKaliResponse(trimmed);
 
     const timer = setTimeout(() => {
       const kaliMessage = {
